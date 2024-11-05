@@ -1,9 +1,17 @@
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-  if (msg.color) {
-    console.log("Receive color = " + msg.color);
-    document.body.style.backgroundColor = msg.color;
-    sendResponse("Change color to " + msg.color);
-  } else {
-    sendResponse("Color message is none.");
+chrome.runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
+  if (request.action === 'saveWord') {
+    chrome.storage.sync.get({ words: [] }, (data: any) => {
+      const words: any[] = data.words;
+      words.push({
+        word: request.word,
+        sentence: request.sentence,
+        translation: request.translation,
+        date: request.date
+      });
+      chrome.storage.sync.set({ words }, () => {
+        sendResponse({ status: 'Word saved successfully' });
+      });
+    });
+    return true;
   }
 });
