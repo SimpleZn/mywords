@@ -4,6 +4,7 @@ import { createRoot } from "react-dom/client";
 import "./tailwind.css";
 import EventManager from "./utils/EventManager";
 import { SmartCard } from "./components/SmartCard.tsx";
+import { TextAreaField } from "./components/TextAreaField";
 
 const FixedHeader = () => {
   return (
@@ -47,30 +48,28 @@ const Sidebar = () => {
 };
 
 const MainContent = () => {
-  const [cards, setCards] = useState([])
+  const [cards, setCards] = useState([]);
   const events = new EventManager();
 
   const addNewCard = () => {
-    const newCardsSet = [
-      ...cards,
-      {}
-    ]
+    const newCardsSet = [...cards, {}];
     // @ts-ignore
-    setCards(newCardsSet)
-  }
-  events.addListener('card:add-new-card-request', addNewCard);
+    setCards(newCardsSet);
+  };
+  events.addListener("card:add-new-card-request", addNewCard);
 
   return (
     <main className="ml-64 p-4 pt-16 deck-edit-section">
       <div className="multi-cards">
         {/* <h1 className="text-2xl font-bold">Main Content</h1> */}
-    
+
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
 
         <SmartCard />
+        <TextAreaField />
       </div>
     </main>
   );

@@ -45,6 +45,28 @@ module.exports = {
         use: "babel-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                exportLocalsConvention: "camelCase",
+                auto: true,
+                localIdentName: "[local]--[hash:base64:5]",
+                namedExport: false,
+              },
+            },
+          },
+          { loader: "postcss-loader" },
+          {
+            loader: "sass-loader",
+          },
+        ],
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {
@@ -52,9 +74,7 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [
-        { from: ".", to: "../", context: "public" },
-      ],
+      patterns: [{ from: ".", to: "../", context: "public" }],
       options: {},
     }),
   ],
