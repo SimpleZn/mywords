@@ -69,7 +69,6 @@ const MainContent = () => {
         </p>
 
         <SmartCard />
-        <TextAreaField />
       </div>
     </main>
   );
@@ -77,7 +76,7 @@ const MainContent = () => {
 
 const NewPage = () => {
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen overflow-hidden bg-gray-200">
       {/* <FixedHeader /> */}
       <div className="flex flex-1">
         <Sidebar />

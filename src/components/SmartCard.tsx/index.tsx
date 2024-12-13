@@ -1,18 +1,58 @@
-import React from 'react';
-import './index.css';
+import React, { useState } from "react";
+import styles from "./style.module.scss";
+import { TextAreaField } from "../TextAreaField";
 
 interface ISmartCardProps {
-  question?: string;
-  answer?: string;
-  onQuestionChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  onAnswerChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  cardInfo: Card;
+  onChange?: (cardInfo: Card) => void;
 }
 
-export const SmartCard: React.FC<ISmartCardProps> = ({ question, answer, onQuestionChange, onAnswerChange }) => {
+export const SmartCard: React.FC<ISmartCardProps> = ({
+  cardInfo,
+  onChange,
+}) => {
+  const [cardCont, setCardCont] = useState<Card>(cardInfo || {});
+
+  const onQuestionChange = (front: string) => {
+    const newContent = {
+      ...cardCont,
+      front,
+    };
+    setCardCont(newContent);
+    onChange?.(newContent);
+  };
+
+  const onAnswerChange = (back: string) => {
+    const newContent = {
+      ...cardCont,
+      back,
+    };
+    setCardCont(newContent);
+    onChange?.(newContent);
+  };
+
   return (
-    <div className="smart-card">
-      <textarea value={question} onChange={onQuestionChange} className="text-area-question"></textarea>
-      <textarea value={answer} onChange={onAnswerChange} className="text-area-answer"></textarea>
+    <div className={styles.smartCard}>
+      <div className={styles.header}>
+        <div>left info : Date ... etc</div>
+        <div>right actions</div>
+      </div>
+      <div className={styles.textFields}>
+        <TextAreaField
+          indicator="Q"
+          value={cardCont.back}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            onQuestionChange(e.target.value)
+          }
+        />
+        <TextAreaField
+          indicator="A"
+          value={cardCont.front}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            onAnswerChange(e.target.value)
+          }
+        />
+      </div>
     </div>
   );
 };

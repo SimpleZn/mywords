@@ -112,7 +112,7 @@ function countCards(db: IDBDatabase): void {
 function getCardsByPage(
   db: IDBDatabase,
   currentPage: number,
-  pageSize: number
+  pageSize: number = 20
 ): void {
   const transaction = db.transaction(["cards"], "readonly");
   const store = transaction.objectStore("cards");

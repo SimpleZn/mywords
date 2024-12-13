@@ -6,8 +6,10 @@ module.exports = {
     "./src/**/*.tsx", // Adjust file extension if needed
   ],
   darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
+  extend: {
+    colors: {
+      "hover-blue": "#197096", // hover-blue
+    },
   },
   variants: {
     extend: {},

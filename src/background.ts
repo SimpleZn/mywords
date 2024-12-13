@@ -14,6 +14,8 @@ chrome.runtime.onInstalled.addListener(async () => {
     const userId = await getOrCreateUserId();
     console.log("User ID:", userId);
     const dbRequest = initDb(userId);
+    // @ts-ignore
+    window.leitnerDb = dbRequest?.result; // Store dbRequest in the window object
   } catch (error) {
     console.error("Error getting or creating user ID:", error);
   }
