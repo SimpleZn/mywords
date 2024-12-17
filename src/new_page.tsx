@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
-
+import { SWRConfig as SWRConfigProvider, SWRConfiguration } from "swr";
 import "./tailwind.css";
-import EventManager from "./utils/EventManager";
-import { SmartCard } from "./components/SmartCard.tsx";
-import { TextAreaField } from "./components/TextAreaField";
-import { useLeitnerDb } from "./hooks/useLeitnerDb";
+
+import { Sidebar } from "./components/SiderBar";
+import { MainContent } from "./components/MainContent";
 
 const FixedHeader = () => {
   return (
@@ -30,63 +29,28 @@ const FixedHeader = () => {
   );
 };
 
-const Sidebar = () => {
-  return (
-    <aside className="fixed left-0 bottom-0 top-16 w-64 bg-gray-100 overflow-y-auto">
-      <ul>
-        <li>
-          <a href="#">Sidebar Item 1</a>
-        </li>
-        <li>
-          <a href="#">Sidebar Item 2</a>
-        </li>
-        <li>
-          <a href="#">Sidebar Item 3</a>
-        </li>
-      </ul>
-    </aside>
-  );
-};
-
-const MainContent = () => {
-  const [cards, setCards] = useState([]);
-  const events = new EventManager();
-  const db = useLeitnerDb();
-
-  console.log("MainContent db", db);
-
-  const addNewCard = () => {
-    const newCardsSet = [...cards, {}];
-    // @ts-ignore
-    setCards(newCardsSet);
-  };
-  events.addListener("card:add-new-card-request", addNewCard);
-
-  return (
-    <main className="ml-64 p-4 pt-16 deck-edit-section">
-      <div className="multi-cards">
-        {/* <h1 className="text-2xl font-bold">Main Content</h1> */}
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-
-        <SmartCard />
-      </div>
-    </main>
-  );
-};
-
 const NewPage = () => {
+  const SWROptions = useMemo<SWRConfiguration>(
+    () => ({
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      shouldRetryOnError: false,
+      onError: (error) => {
+        console.error("SWR error:", error);
+      },
+    }),
+    []
+  );
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden bg-gray-200">
-      {/* <FixedHeader /> */}
-      <div className="flex flex-1">
-        <Sidebar />
-        <MainContent />
+    <SWRConfigProvider value={SWROptions}>
+      <div className="flex flex-col min-h-screen overflow-hidden bg-gray-200">
+        {/* <FixedHeader /> */}
+        <div className="flex flex-1">
+          <Sidebar />
+          <MainContent />
+        </div>
       </div>
-    </div>
+    </SWRConfigProvider>
   );
 };
 

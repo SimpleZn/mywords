@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { useUserId } from "./useUserId";
+import { openDB } from "../data_model/db";
 
 export const useLeitnerDb = () => {
+  const userId = useUserId();
   const [leitnerDb, setLeitnerDb] = useState<IDBDatabase | null>(null);
 
   useEffect(() => {
-    chrome.storage.local.get(["leitnerDb"], (result) => {
-      console.log("get db by useLeitnerDb", result.leitnerDb);
-      setLeitnerDb(result.leitnerDb);
+    if (!userId) return;
+    openDB(userId, (db) => {
+      setLeitnerDb(db);
     });
-  }, []);
+  }, [userId]);
 
   return leitnerDb;
 };

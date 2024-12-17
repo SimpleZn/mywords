@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { SmartCard } from "../SmartCard.tsx";
+import { SmartCard } from "../SmartCard/index.js";
 
 interface ISmartCardListProps {
   initialCards: Card[];

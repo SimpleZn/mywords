@@ -10,7 +10,7 @@ function openDB(
 
   dbRequest.onupgradeneeded = (event: IDBVersionChangeEvent) => {
     const db = (event.target as IDBOpenDBRequest).result;
-    console.log("onupgradeneeded success");
+    console.log("onupgradeneeded success", db.name);
     // 创建ObjectStore
     if (!db.objectStoreNames.contains("users")) {
       const userStore = db.createObjectStore("users", { keyPath: "id" });
@@ -36,7 +36,7 @@ function openDB(
 
   dbRequest.onsuccess = (event: Event) => {
     const db = (event.target as IDBOpenDBRequest).result;
-    console.log("openDB success");
+    console.log("openDB success", db.name);
     const transaction = db.transaction(["boxes"], "readonly");
     const objectStore = transaction.objectStore("boxes");
     const request = objectStore.getAll();
