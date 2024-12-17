@@ -1,7 +1,10 @@
 import { addBox } from "./box";
 
 // 打开或创建数据库
-function openDB(userId: string): IDBOpenDBRequest {
+function openDB(
+  userId: string,
+  callback: (db: IDBDatabase) => void
+): IDBOpenDBRequest {
   const dbName = `LeitnerDB_${userId}`;
   let dbRequest: IDBOpenDBRequest = indexedDB.open(dbName, 1);
 
@@ -55,6 +58,7 @@ function openDB(userId: string): IDBOpenDBRequest {
         addBox(db, newBox);
       }
     };
+    callback?.(db);
   };
 
   dbRequest.onerror = (event: Event) => {
@@ -65,10 +69,4 @@ function openDB(userId: string): IDBOpenDBRequest {
   return dbRequest;
 }
 
-function initDb(userId: string) {
-  // 使用 userId 初始化 IndexedDB 数据库
-  const request = openDB(userId);
-  return request;
-}
-
-export { openDB, initDb };
+export { openDB };

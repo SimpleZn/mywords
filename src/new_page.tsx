@@ -5,6 +5,7 @@ import "./tailwind.css";
 import EventManager from "./utils/EventManager";
 import { SmartCard } from "./components/SmartCard.tsx";
 import { TextAreaField } from "./components/TextAreaField";
+import { useLeitnerDb } from "./hooks/useLeitnerDb";
 
 const FixedHeader = () => {
   return (
@@ -50,6 +51,9 @@ const Sidebar = () => {
 const MainContent = () => {
   const [cards, setCards] = useState([]);
   const events = new EventManager();
+  const db = useLeitnerDb();
+
+  console.log("MainContent db", db);
 
   const addNewCard = () => {
     const newCardsSet = [...cards, {}];

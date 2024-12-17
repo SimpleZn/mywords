@@ -1,5 +1,7 @@
-import { initDb } from "./data_model/db";
+import { openDB } from "./data_model/db";
 import { getOrCreateUserId } from "./utils/uniqueId";
+
+let leitnerDb: IDBDatabase;
 
 // background.js
 chrome.runtime.onInstalled.addListener(async () => {
@@ -13,9 +15,10 @@ chrome.runtime.onInstalled.addListener(async () => {
   try {
     const userId = await getOrCreateUserId();
     console.log("User ID:", userId);
-    const dbRequest = initDb(userId);
-    // @ts-ignore
-    window.leitnerDb = dbRequest?.result; // Store dbRequest in the window object
+    openDB(userId, (db) => {
+      leitnerDb = db;
+      chrome.storage.local.set({ leitnerDb: db });
+    });
   } catch (error) {
     console.error("Error getting or creating user ID:", error);
   }
