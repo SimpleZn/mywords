@@ -61,7 +61,7 @@ function getTagById(db: IDBDatabase, tagId: number): Promise<Tag> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("Tag retrieved successfully:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("Tag not found");
         reject("Tag not found");

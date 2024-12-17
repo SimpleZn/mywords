@@ -11,14 +11,11 @@ export const MainContent = () => {
   const events = new EventManager();
   const db = useLeitnerDb();
 
-  console.log("MainContent db", db, db?.name);
-
-  const allCards = useSWR(db ? SWRKeys.getAllCards : null, () => {
-    console.log("db allcards", db);
+  const { data } = useSWR(db ? SWRKeys.getAllCards : null, () => {
     return getAllCards(db!);
   });
 
-  console.log("allCards", allCards);
+  console.log("allCards", data);
 
   const addNewCard = () => {
     const newCardsSet = [...cards, {}];

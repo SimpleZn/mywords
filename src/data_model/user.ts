@@ -61,7 +61,7 @@ function getUserById(db: IDBDatabase, userId: number): Promise<User> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("User retrieved successfully:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("User not found");
         reject("User not found");
@@ -85,7 +85,7 @@ function getUserByUsername(db: IDBDatabase, username: string): Promise<User> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("User retrieved successfully:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("User not found");
         reject("User not found");
@@ -108,7 +108,7 @@ function getAllUsers(db: IDBDatabase): Promise<User[]> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("All users retrieved:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("No users found");
         reject("No users found");

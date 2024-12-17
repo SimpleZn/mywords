@@ -61,7 +61,7 @@ function getBoxById(db: IDBDatabase, boxId: number): Promise<Box> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("Box retrieved successfully:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         reject("Box not found");
       }

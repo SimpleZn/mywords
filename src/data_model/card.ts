@@ -61,7 +61,7 @@ function getCardById(db: IDBDatabase, cardId: number): Promise<Card> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("Card retrieved successfully:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("Card not found");
         reject("Card not found");
@@ -84,7 +84,7 @@ function getAllCards(db: IDBDatabase): Promise<Card[]> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log("All cards retrieved:", event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log("No cards found");
         reject("No cards found");
@@ -108,7 +108,7 @@ function getCardsByBoxId(db: IDBDatabase, boxId: number): Promise<Card[]> {
     request.onsuccess = (event: any) => {
       if (event.target.result) {
         console.log(`Cards in box ${boxId} retrieved:`, event.target.result);
-        resolve(event.target.result);
+        resolve(request.result);
       } else {
         console.log(`No cards found in box ${boxId}`);
         reject("No cards found");
