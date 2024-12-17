@@ -122,4 +122,11 @@ function getAllUsers(db: IDBDatabase): Promise<User[]> {
   });
 }
 
-export { addUser, getUserByUsername, getAllUsers, deleteUser, getUserById };
+export {
+  addUser,
+  updateUser,
+  getUserByUsername,
+  getAllUsers,
+  deleteUser,
+  getUserById,
+};
