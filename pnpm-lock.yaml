@@ -8,9 +8,15 @@ dependencies:
   '@enipx/react-rich-text-editor':
     specifier: ^1.0.3
     version: 1.0.3(@lexical/react@0.13.1)(lexical@0.13.1)(react-dom@18.3.1)(react@18.3.1)
+  backbone:
+    specifier: ^1.6.0
+    version: 1.6.0
   classnames:
     specifier: ^2.5.1
     version: 2.5.1
+  jquery:
+    specifier: ^3.7.1
+    version: 3.7.1
   leitner-box:
     specifier: ^1.0.6
     version: 1.0.6
@@ -32,6 +38,9 @@ dependencies:
   swr:
     specifier: ^2.2.5
     version: 2.2.5(react@18.3.1)
+  uuid:
+    specifier: ^11.0.3
+    version: 11.0.3
 
 devDependencies:
   '@babel/preset-env':
@@ -43,6 +52,9 @@ devDependencies:
   '@babel/preset-typescript':
     specifier: ^7.26.0
     version: 7.26.0(@babel/core@7.26.0)
+  '@types/backbone':
+    specifier: ^1.4.22
+    version: 1.4.22
   '@types/chrome':
     specifier: 0.0.158
     version: 0.0.158
@@ -2165,6 +2177,13 @@ packages:
       '@babel/types': 7.26.0
     dev: true
 
+  /@types/backbone@1.4.22:
+    resolution: {integrity: sha512-i79hj6XPfsJ37yBHUb9560luep8SPoAbGcpA9TeW1R6Jufk4hHZn5q0l2xuTVtugBcoLlxGQ5qOjaNLBPmqaAg==}
+    dependencies:
+      '@types/jquery': 3.5.32
+      '@types/underscore': 1.13.0
+    dev: true
+
   /@types/chrome@0.0.158:
     resolution: {integrity: sha512-sjBs9E/XDlYyLf3YkPYIN6sFZ/d9LbwMSK+BYphenFdkk39M5P8xcRfykk54RgZr8/QMex1yKlX5EB52TaqhsQ==}
     dependencies:
@@ -2237,6 +2256,12 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
+  /@types/jquery@3.5.32:
+    resolution: {integrity: sha512-b9Xbf4CkMqS02YH8zACqN1xzdxc3cO735Qe5AbSUFmyOiaWAbcpqh9Wna+Uk0vgACvoQHpWDg2rGdHkYPLmCiQ==}
+    dependencies:
+      '@types/sizzle': 2.3.9
+    dev: true
+
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
@@ -2264,8 +2289,16 @@ packages:
       csstype: 3.1.3
     dev: true
 
+  /@types/sizzle@2.3.9:
+    resolution: {integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w==}
+    dev: true
+
   /@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
+    dev: true
+
+  /@types/underscore@1.13.0:
+    resolution: {integrity: sha512-L6LBgy1f0EFQZ+7uSA57+n2g/s4Qs5r06Vwrwn0/nuK1de+adz00NWaztRQ30aEqw5qOaWbPI8u2cGQ52lj6VA==}
     dev: true
 
   /@types/yargs-parser@21.0.3:
@@ -2683,6 +2716,12 @@ packages:
       babel-plugin-jest-hoist: 29.6.3
       babel-preset-current-node-syntax: 1.1.0(@babel/core@7.26.0)
     dev: true
+
+  /backbone@1.6.0:
+    resolution: {integrity: sha512-13PUjmsgw/49EowNcQvfG4gmczz1ximTMhUktj0Jfrjth0MVaTxehpU+qYYX4MxnuIuhmvBLC6/ayxuAGnOhbA==}
+    dependencies:
+      underscore: 1.13.7
+    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -4164,6 +4203,10 @@ packages:
     hasBin: true
     dev: true
 
+  /jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -5511,6 +5554,10 @@ packages:
     hasBin: true
     dev: true
 
+  /underscore@1.13.7:
+    resolution: {integrity: sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==}
+    dev: false
+
   /undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
     dev: true
@@ -5570,6 +5617,11 @@ packages:
   /utila@0.4.0:
     resolution: {integrity: sha512-Z0DbgELS9/L/75wZbro8xAnT50pBVFQZ+hUEueGDU5FN51YSCYM+jdxsfCiHjwNP/4LCDD0i/graKpeBnOXKRA==}
     dev: true
+
+  /uuid@11.0.3:
+    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
+    hasBin: true
+    dev: false
 
   /v8-to-istanbul@9.3.0:
     resolution: {integrity: sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==}

@@ -1,5 +1,9 @@
 function addCard(db: IDBDatabase, card: Card): Promise<IDBValidKey> {
   return new Promise((resolve, reject) => {
+    if (!card.id) {
+      reject(new Error("Card must have an id"));
+      return;
+    }
     const transaction = db.transaction(["cards"], "readwrite");
     const store = transaction.objectStore("cards");
     const request = store.add(card);

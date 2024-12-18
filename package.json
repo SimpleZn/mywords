@@ -18,19 +18,23 @@
   },
   "dependencies": {
     "@enipx/react-rich-text-editor": "^1.0.3",
+    "backbone": "^1.6.0",
     "classnames": "^2.5.1",
+    "jquery": "^3.7.1",
     "leitner-box": "^1.0.6",
     "rc-textarea": "^1.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-infinite-scroll-component": "^6.1.0",
     "scroll-into-view-if-needed": "^3.1.0",
-    "swr": "^2.2.5"
+    "swr": "^2.2.5",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
+    "@types/backbone": "^1.4.22",
     "@types/chrome": "0.0.158",
     "@types/jest": "^29.5.0",
     "@types/react": "^18.0.29",

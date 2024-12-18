@@ -1,11 +1,11 @@
-declare module '*.scss';
-declare module '*.sass';
-declare module '*.png' {
+declare module "*.scss";
+declare module "*.sass";
+declare module "*.png" {
   const content: string;
   export default content;
 }
 
-declare module '*.svg' {
+declare module "*.svg" {
   export function ReactComponent(
     props: React.SVGProps<SVGSVGElement>
   ): React.ReactElement;
