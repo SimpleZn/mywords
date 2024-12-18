@@ -1,4 +1,4 @@
-import { openDB } from "./data_model/db";
+import { openDB } from "./indexDb/db";
 import { getOrCreateUserId } from "./utils/uniqueId";
 
 let leitnerDb: IDBDatabase;
@@ -17,7 +17,6 @@ chrome.runtime.onInstalled.addListener(async () => {
     console.log("User ID:", userId);
     openDB(userId, (db) => {
       leitnerDb = db;
-      chrome.storage.local.set({ leitnerDb: db });
     });
   } catch (error) {
     console.error("Error getting or creating user ID:", error);
@@ -86,11 +85,13 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             sentence: getSentence(selectedText), // 这里简化处理，使用页面URL作为句子的占位符
             translation: "", // 初始时没有翻译
             date: new Date().toISOString(),
+            db: leitnerDb,
           },
           (response) => {
             if (response && response.status === "Word saved successfully") {
-              console.log("Word saved successfully");
+              console.log("Word saved successfully", response, leitnerDb.name);
             }
+            // new Card object
           }
         );
       });

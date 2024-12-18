@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUserId } from "./useUserId";
-import { openDB } from "../data_model/db";
+import { openDB } from "../indexDb/db";
 
 export const useLeitnerDb = () => {
   const userId = useUserId();

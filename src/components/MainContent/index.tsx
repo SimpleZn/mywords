@@ -4,7 +4,7 @@ import { useLeitnerDb } from "../../hooks/useLeitnerDb";
 import { SmartCard } from "../SmartCard";
 import useSWR from "swr";
 import { SWRKeys } from "../../utils/swr-keys";
-import { getAllCards } from "../../data_model/card";
+import { getAllCards } from "../../indexDb/card";
 
 export const MainContent = () => {
   const [cards, setCards] = useState([]);
